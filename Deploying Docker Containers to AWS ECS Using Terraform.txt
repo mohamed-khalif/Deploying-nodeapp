@@ -26,47 +26,49 @@ http://localhost:5000/ should serve the same application, but this time from a D
 
 
 SECTION: Building underlying infrastructure
+
 1. Provider Configuration
-Specifies the required AWS provider with its version, access keys, and region.
+Specify the required AWS provider version, access keys, and region.
 
 2. ECR Repository Creation
-Creates an Amazon Elastic Container Registry (ECR) repository named "app-repo" to store Docker container images.
+Create an ECR repository named "app-repo" to store Docker container images.
 
 3. ECS Cluster Creation
-Establishes an Amazon ECS (Elastic Container Service) cluster named "app-cluster."
+Establish an ECS cluster named "app-cluster."
 
 4. ECS Task Definition
-Defines an ECS task named "app-first-task" with container specifications.
-Specifies essential container details like image, ports, memory, CPU, and compatibility with Fargate launch type.
-Sets up networking specifics like network mode and execution role.
+Define an ECS task named "app-first-task":
+Specify container details (image, ports, memory, CPU).
+Ensure compatibility with Fargate launch type.
+Set up networking specifics and execution role.
 
 5. IAM Role Creation for ECS Task Execution
-Defines an IAM role "ecsTaskExecutionRole" allowing ECS tasks to assume the role.
-Establishes a policy for the role to execute ECS tasks.
+Create an IAM role "ecsTaskExecutionRole" allowing ECS tasks to assume the role.
+Establish a policy for the role to execute ECS tasks.
 
 6. VPC and Subnet Creation
-Creates a default VPC and subnets in two availability zones within the "us-east-1" region.
+Create a default VPC and subnets in two availability zones within "us-east-1."
 
 7. Application Load Balancer (ALB) Configuration
-Sets up an Application Load Balancer named "load-balancer-dev" across the previously created subnets.
-Defines a security group allowing inbound traffic on port 80.
+Set up an ALB named "load-balancer-dev" across created subnets.
+Define a security group allowing inbound traffic on port 80.
 
 8. Security Group for Load Balancer
-Creates a security group for the load balancer allowing inbound traffic on port 80 from all sources.
+Create a security group for the load balancer allowing inbound traffic on port 80 from all sources.
 
 9. Load Balancer Target Group Configuration
-Establishes a target group for the load balancer to route traffic to IP-based targets.
+Establish a target group for the load balancer to route traffic to IP-based targets.
 
 10. Load Balancer Listener Configuration
-Configures a listener for the load balancer on port 80, forwarding traffic to the target group.
+Configure a listener for the load balancer on port 80, forwarding traffic to the target group.
 
 11. ECS Service Configuration
-Sets up an ECS service named "app-first-service" associated with the ECS cluster.
-Specifies the task definition, launch type, desired container count, and load balancer details.
-Configures network settings, assigning public IPs and defining security groups.
+Set up an ECS service named "app-first-service" associated with the ECS cluster:
+Specify task definition, launch type, desired container count, and load balancer details.
+Configure network settings, assigning public IPs, and defining security groups.
 
 12. Security Group for ECS Service
-Defines a security group for the ECS service, allowing inbound traffic only from the load balancer security group.
+Define a security group for the ECS service, allowing inbound traffic only from the load balancer security group.
 
 13. Output
-Logs the application's load balancer URL as an output.
+Log the application's load balancer URL as an output.
